@@ -1,5 +1,4 @@
 package testenvironment;
-
 import java.math.BigDecimal;
 
 public class TestEnvironment {
