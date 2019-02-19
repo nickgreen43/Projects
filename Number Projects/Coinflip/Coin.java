@@ -1,4 +1,4 @@
-package testenvironment;
+package CoinFlipSimulation;
 import java.math.BigDecimal;
 
 public class TestEnvironment {
