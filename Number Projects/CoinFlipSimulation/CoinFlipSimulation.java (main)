@@ -1,0 +1,11 @@
+package CoinFlipSimulation;
+
+public class CoinFlipSimulation {
+
+    public static void main(String[] args) {
+
+        Coin c = new Coin();
+        c.flip(1);
+    }
+
+}
