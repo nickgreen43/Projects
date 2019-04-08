@@ -35,15 +35,15 @@ public class JavaChallenges {
             BigInteger nickelCount = centsToInteger.subtract(quarterCount.multiply(BigInteger.valueOf(25))).subtract(dimeCount.multiply(BigInteger.TEN)).divide(BigInteger.valueOf(5));
             BigInteger pennyCount = centsToInteger.subtract(quarterCount.multiply(BigInteger.valueOf(25))).subtract(dimeCount.multiply(BigInteger.TEN)).subtract(nickelCount.multiply(BigInteger.valueOf(5))).divide(BigInteger.valueOf(1));
 
-            System.out.println("");
-            System.out.println("Pennies: " + pennyCount.abs());
-            System.out.println("Nickels: " + nickelCount.abs());
-            System.out.println("Dimes: " + dimeCount.abs());
-            System.out.println("Quarters: " + quarterCount.abs());
-            System.out.println("Cash: $" + change.toBigInteger().abs());
+            System.out.println("\nPennies: " + pennyCount.abs()
+                    + "\nNickels: " + nickelCount.abs()
+                    + "\nDimes: " + dimeCount.abs()
+                    + "\nQuarters: " + quarterCount.abs()
+                    + "\nCash: $" + change.toBigInteger().abs());
 
             break;
 
         }
     }
+
 }
