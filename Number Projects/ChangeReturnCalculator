@@ -1,0 +1,40 @@
+//calculates the number of quarters, dimes, nickels, pennies and dollar bills that are needed for change in a transaction
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class JavaChallenges {
+
+    public static void main(String[] args) {
+
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter the cost: $");
+        BigDecimal cost = scan.nextBigDecimal();
+
+        System.out.print("Enter amount of money given: $");
+        BigDecimal paid = scan.nextBigDecimal();
+
+        BigDecimal change = cost.subtract(paid);
+
+        System.out.println("Your change is: $" + change);
+
+        BigDecimal one = new BigDecimal(1);
+        BigDecimal cents = (change.remainder(one));
+        BigInteger centsToInteger = cents.movePointRight(2).toBigInteger();
+
+        BigInteger quarterCount = cents.movePointRight(2).toBigInteger().divide(BigInteger.valueOf(25));
+        BigInteger dimeCount = centsToInteger.subtract(quarterCount.multiply(BigInteger.valueOf(25))).divide(BigInteger.TEN);
+        BigInteger nickelCount = centsToInteger.subtract(quarterCount.multiply(BigInteger.valueOf(25))).subtract(dimeCount.multiply(BigInteger.TEN)).divide(BigInteger.valueOf(5));
+        BigInteger pennyCount = centsToInteger.subtract(quarterCount.multiply(BigInteger.valueOf(25))).subtract(dimeCount.multiply(BigInteger.TEN)).subtract(nickelCount.multiply(BigInteger.valueOf(5))).divide(BigInteger.valueOf(1));
+
+        System.out.println("");
+        System.out.println("Pennies: " + pennyCount);
+        System.out.println("Nickels: " + nickelCount);
+        System.out.println("Dimes: " + dimeCount);
+        System.out.println("Quarters: " + quarterCount);
+        System.out.println("Cash: $" + change.toBigInteger());
+
+    }
+
+}
