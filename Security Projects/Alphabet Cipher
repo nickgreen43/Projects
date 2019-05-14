@@ -1,0 +1,109 @@
+//From r/dailyprogrammer https://www.reddit.com/r/dailyprogrammer/comments/879u8b/20180326_challenge_355_easy_alphabet_cipher/
+
+public class JavaChallenges {
+
+    public static void main(String[] args) {
+
+        Decipher("python", "pjphmfamhrcaifxifvvfmzwqtmyswst");
+
+        CreateCipher("IAm TestingTheCipher", "goodluck");
+
+    }
+
+    public static void CreateCipher(String message, String keyword) {
+
+        String a = "abcdefghijklmnopqrstuvwxyz";
+        StringBuilder placeholder = new StringBuilder("abcdefghijklmnopqrstuvwxyz");
+
+        StringBuilder code = new StringBuilder("");
+
+        int x = 0;
+        int y = 0;
+        int index = 0;
+
+        keyword = keyword.toLowerCase().replaceAll(" ", "");
+        message = message.toLowerCase().replaceAll(" ", "");
+
+        while (keyword.length() < message.length()) {
+
+            keyword = keyword + keyword;
+
+            if (keyword.length() > message.length()) {
+                keyword = keyword.substring(0, message.length());
+            }
+        }
+
+        while (x < keyword.length()) {
+
+            if (y < keyword.length()) {
+                String stringValueOf = String.valueOf(keyword.charAt(y));
+                index = a.indexOf(stringValueOf);
+                y++;
+            }
+
+            while (true) {
+                placeholder.append(placeholder.charAt(0));
+                placeholder.delete(0, 1);
+
+                if (String.valueOf(placeholder.charAt(0)).equals(String.valueOf(message.charAt(x)))) {
+                    code.append(placeholder.charAt(index));
+                    break;
+                }
+            }
+
+            x++;
+        }
+
+        System.out.println("Cihper generated: " + code);
+
+    }
+
+    public static void Decipher(String secret, String codeToDecipher) {
+
+        String a = "abcdefghijklmnopqrstuvwxyz";
+        int index = 0;
+        int x = 0;
+        int y = 0;
+
+        secret = secret.toLowerCase().replaceAll(" ", "");
+        codeToDecipher = codeToDecipher.toLowerCase().replaceAll(" ", "");
+
+        int decipherLength = codeToDecipher.length();
+        StringBuilder placeholder = new StringBuilder("abcdefghijklmnopqrstuvwxyz");
+        StringBuilder solution = new StringBuilder("");
+
+        //expand secret to match codeToDecipher length
+        while (secret.length() < decipherLength) {
+
+            secret = secret + secret;
+
+            if (secret.length() > decipherLength) {
+                secret = secret.substring(0, decipherLength);
+            }
+        }
+
+        while (x < secret.length()) {
+            if (y < secret.length()) {
+                String stringValueOf = String.valueOf(secret.charAt(y));
+                index = a.indexOf(stringValueOf);
+                y++;
+
+            }
+
+            while (true) {
+                placeholder.append(placeholder.charAt(0));
+                placeholder.delete(0, 1);
+
+                if (String.valueOf(placeholder.charAt(index)).equals(String.valueOf(codeToDecipher.charAt(x)))) {
+                    solution.append(String.valueOf(placeholder.charAt(0)));
+                    break;
+                }
+
+            }
+            x++;
+        }
+
+        System.out.println("Deciphered message: " + solution);
+
+    }
+}
