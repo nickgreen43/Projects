@@ -4,16 +4,16 @@ public class JavaChallenges {
 
     public static void main(String[] args) {
 
-        Decipher("python", "pjphmfamhrcaifxifvvfmzwqtmyswst");
+        CreateCipher("AlwaysLookOntheBrightSideofLife", "python");
 
-        CreateCipher("IAm TestingTheCipher", "goodluck");
+        Decipher("python", "pjphmfamhrcaifxifvvfmzwqtmyswst");
 
     }
 
     public static void CreateCipher(String message, String keyword) {
 
         String a = "abcdefghijklmnopqrstuvwxyz";
-        StringBuilder placeholder = new StringBuilder("abcdefghijklmnopqrstuvwxyz");
+        StringBuilder alphabet = new StringBuilder("abcdefghijklmnopqrstuvwxyz");
 
         StringBuilder code = new StringBuilder("");
 
@@ -36,17 +36,18 @@ public class JavaChallenges {
         while (x < keyword.length()) {
 
             if (y < keyword.length()) {
-                String stringValueOf = String.valueOf(keyword.charAt(y));
-                index = a.indexOf(stringValueOf);
+                String getKeywordChar = String.valueOf(keyword.charAt(y));
+                index = a.indexOf(getKeywordChar);
                 y++;
             }
 
             while (true) {
-                placeholder.append(placeholder.charAt(0));
-                placeholder.delete(0, 1);
+                //generate table of A-Z, replacing the first letter with the next one each time (26 total lines)
+                alphabet.append(alphabet.charAt(0));
+                alphabet.delete(0, 1);
 
-                if (String.valueOf(placeholder.charAt(0)).equals(String.valueOf(message.charAt(x)))) {
-                    code.append(placeholder.charAt(index));
+                if (String.valueOf(alphabet.charAt(0)).equals(String.valueOf(message.charAt(x)))) {
+                    code.append(alphabet.charAt(index));
                     break;
                 }
             }
@@ -69,7 +70,7 @@ public class JavaChallenges {
         codeToDecipher = codeToDecipher.toLowerCase().replaceAll(" ", "");
 
         int decipherLength = codeToDecipher.length();
-        StringBuilder placeholder = new StringBuilder("abcdefghijklmnopqrstuvwxyz");
+        StringBuilder alphabet = new StringBuilder("abcdefghijklmnopqrstuvwxyz");
         StringBuilder solution = new StringBuilder("");
 
         //expand secret to match codeToDecipher length
@@ -84,18 +85,19 @@ public class JavaChallenges {
 
         while (x < secret.length()) {
             if (y < secret.length()) {
-                String stringValueOf = String.valueOf(secret.charAt(y));
-                index = a.indexOf(stringValueOf);
+                String getSecretChar = String.valueOf(secret.charAt(y));
+                index = a.indexOf(getSecretChar);
                 y++;
 
             }
 
             while (true) {
-                placeholder.append(placeholder.charAt(0));
-                placeholder.delete(0, 1);
+                //generate table of A-Z, replacing the first letter with the next one each time (26 total lines)
+                alphabet.append(alphabet.charAt(0));
+                alphabet.delete(0, 1);
 
-                if (String.valueOf(placeholder.charAt(index)).equals(String.valueOf(codeToDecipher.charAt(x)))) {
-                    solution.append(String.valueOf(placeholder.charAt(0)));
+                if (String.valueOf(alphabet.charAt(index)).equals(String.valueOf(codeToDecipher.charAt(x)))) {
+                    solution.append(String.valueOf(alphabet.charAt(0)));
                     break;
                 }
 
@@ -107,3 +109,4 @@ public class JavaChallenges {
 
     }
 }
+
