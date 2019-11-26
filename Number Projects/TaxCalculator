@@ -1,0 +1,85 @@
+import java.util.Scanner;
+
+public class TaxCalculator {
+
+	private double tax1 = .10;
+	private double tax2 = .12;
+	private double tax3 = .22;
+	private double tax4 = .24;
+	private double tax5 = .32;
+	private double tax6 = .35;
+	private double tax7 = .37;
+
+	private double income1 = 9700;
+	private double income2 = 39475;
+	private double income3 = 84200;
+	private double income4 = 160725;
+	private double income5 = 204100;
+	private double income6 = 510300;
+
+	public static void main(String[] args) {
+
+		Scanner scan = new Scanner(System.in);
+
+		while (true) {
+
+			System.out.print("Enter your income after all deductions: ");
+			String userInput = scan.nextLine();
+			
+			if (userInput.equals("quit")) {
+				return;
+			}
+			
+			try {
+			Double userIncome = Double.parseDouble(userInput);
+
+			
+			TaxCalculator practice = new TaxCalculator();
+			double tax = practice.tax(userIncome);
+			double effectiveRate = (tax / userIncome) * 100;
+		
+
+			System.out.println("Your federal tax amount is: " + tax);
+			System.out.println("Your tax rate is: " + Math.round(effectiveRate) + "%");
+			
+
+			} catch(Exception e) {
+				System.out.println("**Enter a valid number**");
+				continue;
+			}
+			
+
+		}
+	}
+
+	private double tax(double income) {
+
+		double taxTotal = 0;
+
+	
+
+			if (income > 0 && income <= income1) {
+				taxTotal = income * tax1;
+			}
+			  else if (income > income1 && income <= income2) {
+				taxTotal = (income1 * tax1) + (income - income1) * tax2;
+
+			} else if (income > income2 && income <= income3) {
+
+				taxTotal = (income1 * tax1) + ((income2 - income1) * tax2) + (income - income2) * tax3;
+
+			} else if (income > income3) {
+
+				taxTotal = (income1 * tax1) + ((income2 - income1) * tax2) + ((income3 - income2) * tax3) + (income - income3) * tax4;
+
+			} else {
+				taxTotal = 0;
+			}
+
+			return taxTotal;
+
+		}
+
+	
+
+}
