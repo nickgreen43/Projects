@@ -1,3 +1,5 @@
+//Calculates the post-deduction federal tax rate for a single, 0 dependent tax payer in the United States in 2019
+
 import java.util.Scanner;
 
 public class TaxCalculator {
