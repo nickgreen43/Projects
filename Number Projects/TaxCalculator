@@ -27,29 +27,25 @@ public class TaxCalculator {
 
 			System.out.print("Enter your income after all deductions: ");
 			String userInput = scan.nextLine();
-			
+
 			if (userInput.equals("quit")) {
 				return;
 			}
-			
+
 			try {
-			Double userIncome = Double.parseDouble(userInput);
+				Double userIncome = Double.parseDouble(userInput);
 
-			
-			TaxCalculator practice = new TaxCalculator();
-			double tax = practice.tax(userIncome);
-			double effectiveRate = (tax / userIncome) * 100;
-		
+				TaxCalculator practice = new TaxCalculator();
+				double tax = practice.tax(userIncome);
+				double effectiveRate = (tax / userIncome) * 100;
 
-			System.out.println("Your federal tax amount is: " + tax);
-			System.out.println("Your tax rate is: " + Math.round(effectiveRate) + "%");
-			
+				System.out.println("Your federal tax amount is: " + tax);
+				System.out.println("Your tax rate is: " + Math.round(effectiveRate) + "%");
 
-			} catch(Exception e) {
+			} catch (Exception e) {
 				System.out.println("**Enter a valid number**");
 				continue;
 			}
-			
 
 		}
 	}
@@ -58,30 +54,42 @@ public class TaxCalculator {
 
 		double taxTotal = 0;
 
-	
+		if (income > 0 && income <= income1) {
+			taxTotal = income * tax1;
+		} else if (income > income1 && income <= income2) {
+			taxTotal = (income1 * tax1) + (income - income1) * tax2;
 
-			if (income > 0 && income <= income1) {
-				taxTotal = income * tax1;
-			}
-			  else if (income > income1 && income <= income2) {
-				taxTotal = (income1 * tax1) + (income - income1) * tax2;
+		} else if (income > income2 && income <= income3) {
 
-			} else if (income > income2 && income <= income3) {
+			taxTotal = (income1 * tax1) + ((income2 - income1) * tax2) + (income - income2) * tax3;
 
-				taxTotal = (income1 * tax1) + ((income2 - income1) * tax2) + (income - income2) * tax3;
+		} else if (income > income3) {
 
-			} else if (income > income3) {
-
-				taxTotal = (income1 * tax1) + ((income2 - income1) * tax2) + ((income3 - income2) * tax3) + (income - income3) * tax4;
-
-			} else {
-				taxTotal = 0;
-			}
-
-			return taxTotal;
+			taxTotal = (income1 * tax1) + ((income2 - income1) * tax2) + ((income3 - income2) * tax3)
+					+ (income - income3) * tax4;
 
 		}
 
-	
+		else if (income > income4) {
+
+			taxTotal = (income1 * tax1) + ((income2 - income1) * tax2) + ((income3 - income2) * tax3)
+					+ ((income4 - income3) * tax4) + (income - income4) * tax5;
+
+		} else if (income > income5) {
+
+			taxTotal = (income1 * tax1) + ((income2 - income1) * tax2) + ((income3 - income2) * tax3)
+					+ ((income4 - income3) * tax4) + ((income5 - income4) * tax5) + (income - income5) * tax6;
+
+		} else if (income > income6) {
+
+			taxTotal = (income1 * tax1) + ((income2 - income1) * tax2) + ((income3 - income2) * tax3)
+					+ ((income4 - income3) * tax4) + ((income5 - income4) * tax5) + ((income6-income5) * tax6) + (income - income6) * tax7;
+		} else {
+			taxTotal = 0;
+		}
+
+		return taxTotal;
+
+	}
 
 }
