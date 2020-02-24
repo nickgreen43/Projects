@@ -1,0 +1,30 @@
+//Start with a number n > 1. Find the number of steps it takes to reach one using the following process: If n is even, divide it by 2. If n is odd, multiply it by 3 and add 1.
+
+import java.util.Scanner;
+
+public class TaxCalculator {
+
+	public static void main(String[] args) {
+
+		System.out.print("Provide a number n > 1: ");
+		Scanner scan = new Scanner(System.in);
+		int n = Integer.parseInt(scan.nextLine());
+		int x = 0;
+
+		while (n > 1) {
+
+			if (n % 2 == 0) {
+				n = n / 2;
+				x++;
+			} else {
+				n = (n * 3) + 1;
+				x++;
+			}
+
+		}
+		System.out.println("n = " + n);
+		System.out.println(x);
+
+	}
+
+}
