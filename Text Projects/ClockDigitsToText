@@ -1,0 +1,92 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+
+public class TaxCalculator {
+
+	public static List<String> numbers = Arrays.asList("Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven",
+			"Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen",
+			"Eighteen", "Nineteen", "Twenty", "Thirty", "Fourty", "Fifty");
+
+	public static void main(String[] args) {
+
+		System.out.println("Enter time: ");
+
+		Scanner scan = new Scanner(System.in);
+		String time = scan.nextLine();
+
+		getTime(time);
+
+	}
+
+	public static void getTime(String time) {
+
+		if (time.length() == 4) {
+			time = "0" + time;
+		}
+
+		int hour = Integer.parseInt(time.substring(0, 2));
+		int minute = Integer.parseInt(time.substring(3, 5));
+		int minuteFirstDigit = Integer.parseInt(time.substring(3, 4));
+		int minuteSecondDigit = Integer.parseInt(time.substring(4, 5));
+
+		String hourTime = "";
+		String minuteTime = "";
+		Boolean morning = false;
+		Boolean evening = false;
+
+		int x = 1;
+
+		// get hour hand and set AM/PM
+		while (x <= 23) {
+			if (hour > 12 && hour == x) {
+				hourTime = numbers.get(x - 12);
+				evening = true;
+			} else if (hour == x) {
+				hourTime = numbers.get(x);
+				if (hour < 12) {
+					morning = true;
+				}
+			}
+			x++;
+		}
+
+		x = 1;
+		while (x <= 20) {
+			if (minute < 20 && minute == x) {
+				minuteTime = numbers.get(x);
+			}
+			x++;
+		}
+
+		if (minute >= 20 && minute < 30) {
+
+			minuteTime = numbers.get(20) + "-" + numbers.get(minuteSecondDigit);
+		}
+
+		if (minute >= 30 && minute < 40) {
+
+			minuteTime = numbers.get(21) + "-" + numbers.get(minuteSecondDigit);
+		}
+
+		if (minute >= 40 && minute < 50) {
+
+			minuteTime = numbers.get(22) + "-" + numbers.get(minuteSecondDigit);
+		}
+
+		if (minute >= 50 && minute < 60) {
+
+			minuteTime = numbers.get(23) + "-" + numbers.get(minuteSecondDigit);
+		}
+
+		if (morning == false) {
+			minuteTime = minuteTime.concat(" PM");
+		} else {
+			minuteTime = minuteTime.concat(" AM");
+		}
+
+		System.out.println("It is " + hourTime + " " + minuteTime);
+
+	}
+
+}
