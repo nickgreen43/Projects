@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class TaxCalculator {
+public class JavaChallenges {
 
 	public static List<String> numbers = Arrays.asList("Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven",
 			"Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen",
@@ -12,13 +12,20 @@ public class TaxCalculator {
 
 	public static void main(String[] args) {
 
-		System.out.println("Enter time: ");
+		while (true) {
 
-		Scanner scan = new Scanner(System.in);
-		String time = scan.nextLine();
+			try {
+				System.out.println("Enter time: ");
 
-		getTime(time);
+				Scanner scan = new Scanner(System.in);
+				String time = scan.nextLine();
 
+				getTime(time);
+			} catch (Exception e) {
+				System.out.println("Enter format 00:00");
+				continue;
+			}
+		}
 	}
 
 	public static void getTime(String time) {
