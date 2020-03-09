@@ -1,3 +1,5 @@
+//converts digits to text for time (i.e enter 4:24 and it will spit say the time "Four Twenty Four") 
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
