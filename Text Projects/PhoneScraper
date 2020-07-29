@@ -1,0 +1,39 @@
+#! python3
+import re, pyperclip
+
+#Create a regex for phone numbers
+phoneRegex = re.compile(r'''
+(
+(\d-)?                            #1-800 numbers (optional)    
+((\d\d\d)|(\(\d\d\d\)))?    #area code (optional)
+(\s|-)                      #first seperator (space or -)
+\d\d\d                      #first 3 digits
+-                           #second seperator (space or -)
+\d\d\d\d                    #last 4 digits
+(((ext(\.)?\s)|x)           #extension word part (optional)
+ (\d{2,5}))?                #extension number part (optional)
+ )
+  ''',re.VERBOSE)
+
+#Get the text off the clipboard
+text = pyperclip.paste()
+
+#Extrat the phone numbers from the text
+extractedPhone = phoneRegex.findall(text)
+
+allPhoneNumbers = []
+for phoneNumber in extractedPhone:
+    allPhoneNumbers.append(phoneNumber[0])
+
+
+#Remove duplicates
+allPhoneNumbersUnique = list(dict.fromkeys(allPhoneNumbers))
+
+#Print out new line for each number
+results = '\n'.join(allPhoneNumbersUnique)
+
+print(results)
+
+#Copy the extracted phone numbers to the clipboard
+pyperclip.copy(results)
+
