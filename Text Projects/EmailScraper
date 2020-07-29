@@ -1,0 +1,29 @@
+#! python3
+import re, pyperclip
+
+#Create a regex for phone numbers
+emailRegex = re.compile(r'''
+
+[a-zA-Z0-9.+_]+    #email name
+@               #@
+[a-zA-Z0-9.+_]+    #domain name
+                
+  ''',re.VERBOSE)
+
+#Get the text off the clipboard
+text = pyperclip.paste()
+
+#Extrat the phone numbers from the text
+extractedEmail = emailRegex.findall(text)
+
+#Remove duplicates
+extractedEmailUnique = list(dict.fromkeys(extractedEmail))
+
+#Print out new line for each number
+results = '\n'.join(extractedEmailUnique)
+
+print(results)
+
+#Copy the extracted phone numbers to the clipboard
+pyperclip.copy(results)
+
